@@ -19,7 +19,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Initializing Setup
-      run: ./setup.ps1
+      run: Start-Process powershell -ArgumentList "-File ./setup.ps1" -Verb RunAs -Wait
+      shell: powershell
     - name: Starting CRD 
       run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
     - name: Keep Alive
